@@ -24,13 +24,11 @@ async function deploy(files){
         if(file.type == "file"){
             // Create directories if needed
             if(file.name.includes("/")){
-                console.log("In dir!")
                 let dirs = file.name.split("/")
                 dirs.pop()
                 dirs = dirs.join("/")
                 if(fs.existsSync("./live/" + dirs) && fs.statSync("./live/" + dirs).isDirectory());
                 else {
-                    console.log("./live/" + dirs)
                     fs.mkdirSync("./live/" + dirs, { recursive: true })
                 }
                 fs.writeFileSync("./live/" + file.name, file.data)
@@ -300,13 +298,13 @@ async function TimedAction(){
     // Do what this script is supposed to do
     let source = await fetchSource(ZipLocation)
     // Check the hash
-    console.log("Got source: ", source)
     // Compare sources
     if(oldSourceHash != source[1]){
-        console.log("Got update!")
+        oldSourceHash = source[1]
+        console.log("[", new Date().toDateString(), "]","Got update!")
         deploy(source[0])
     }else {
-        console.log("No update.")
+        console.log("[", new Date().toDateString(), "]","No update.")
     }
 }
 
