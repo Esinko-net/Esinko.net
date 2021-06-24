@@ -296,9 +296,12 @@ async function fetchSource(url, redirectLayer){
 // Timed action execution
 async function TimedAction(){
     // Do what this script is supposed to do
+    console.log("[", new Date().toDateString(), "]","Checking for updates...")
     let source = await fetchSource(ZipLocation)
     // Check the hash
     // Compare sources
+    console.log("Old version:", oldSourceHash)
+    console.log("Current:", source[1])
     if(oldSourceHash != source[1]){
         oldSourceHash = source[1]
         console.log("[", new Date().toDateString(), "]","Got update!")
