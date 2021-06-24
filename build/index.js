@@ -201,7 +201,6 @@ async function buildSourceObject(source){
     let hash = crypto.createHash("sha256").update(source).digest("hex")
     let files = []
 
-
     // Decompress data
     let decompressed = zlib.gunzipSync(source)
 
