@@ -309,7 +309,7 @@ async function TimedAction(){
     let source = await fetchSource(ZipLocation)
     // Check the hash
     // Compare sources
-    console.log(" -> Local version:", oldSourceHash)
+    console.log(" -> Local version:     ", oldSourceHash)
     console.log(" -> Repository version:", source[1])
     if(oldSourceHash != source[1]){
         oldSourceHash = source[1]
