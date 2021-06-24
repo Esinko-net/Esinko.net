@@ -11,7 +11,6 @@ let oldSourceHash = null
 
 // Deploys the new repository contents to ./live (which Docker will mount to esinko.net/live)
 async function deploy(files){
-    console.log("Deploying changes...")
     // Remove old version
     if(fs.existsSync("./live") && fs.statSync("./live").isDirectory()){
         fs.rmdirSync("./live", { recursive: true })
@@ -37,7 +36,6 @@ async function deploy(files){
             }
         }
     }
-    console.log("Changes deployed!")
 }
 
 // Tar magic
@@ -292,21 +290,35 @@ async function fetchSource(url, redirectLayer){
     })
 }
 
+// Timestamp utilities
+
+function fD(str){
+    if(str.length < 2) str = "0" + str
+    return str
+}
+
+function timestamp(){
+    let d = new Date()
+    return fD(d.toDateString()) + " " + fD(d.getHours()) + ":" + fD(d.getMinutes()) + ":" + fD(d.getSeconds())
+}
+
 // Timed action execution
 async function TimedAction(){
     // Do what this script is supposed to do
-    console.log("[", new Date().toDateString(), "]","Checking for updates...")
+    console.log("[", timestamp(), "]","Checking for updates...")
     let source = await fetchSource(ZipLocation)
     // Check the hash
     // Compare sources
-    console.log("Old version:", oldSourceHash)
-    console.log("Current:", source[1])
+    console.log(" -> Local version:", oldSourceHash)
+    console.log(" -> Repository version:", source[1])
     if(oldSourceHash != source[1]){
         oldSourceHash = source[1]
-        console.log("[", new Date().toDateString(), "]","Got update!")
-        deploy(source[0])
+        console.log("[", timestamp(), "]","Got update!")
+        console.log(" -> Deploying...")
+        await deploy(source[0])
+        console.log("[", timestamp(), "]","Deployed.")
     }else {
-        console.log("[", new Date().toDateString(), "]","No update.")
+        console.log("[", timestamp(), "]","No update.")
     }
 }
 
