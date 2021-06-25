@@ -1,4 +1,4 @@
 docker run -d \
   -it \
-  --mount type=bind,source=REPLACE THIS WITH THE TARGET DIRECTORY,target=/usr/src/app/live \
+  --mount type=bind,source=/var/www_esinko/live,target=/usr/src/app/live \
   esinko/site
