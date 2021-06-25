@@ -312,7 +312,9 @@ function timestamp(){
 }
 
 // Timed action execution
+let free = true
 async function TimedAction(){
+    free = false
     // Do what this script is supposed to do
     console.log("[", timestamp(), "]","Checking for updates...")
     let source = await fetchSource(ZipLocation)
@@ -329,9 +331,11 @@ async function TimedAction(){
     }else {
         console.log("[", timestamp(), "]","No update.")
     }
+    free = true
 }
 
 TimedAction()
 setInterval(async () => {
-    TimedAction()
+    if(free) TimedAction()
+    else console.log("[", timestamp(), "]","Still checking...")
 }, updateCheckInterval)
