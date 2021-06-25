@@ -58,9 +58,9 @@ html, body {
     display: inline-block;
     width: 600px;
     color: white;
-    font-size: 100px;
+    font-size: 104px;
     z-index: 2;
-    letter-spacing: 2.3px;
+    letter-spacing: 0.6px;
     transition: opacity 0.3s ease-in-out;
     opacity: 1;
 }
