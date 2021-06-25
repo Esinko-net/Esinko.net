@@ -29,8 +29,9 @@ async function deploy(files){
     // Write new files
     for(let file of files){
         // Only files supported. Links/Symlinks will be ignored.
-        if(file.type == "file"){
+        if(file.type == "file" && file.name.includes("website/")){
             // Create directories if needed
+            file.name = file.name.replace("website/", "")
             if(file.name.includes("/")){
                 let dirs = file.name.split("/")
                 dirs.pop()
@@ -302,7 +303,7 @@ async function fetchSource(url, redirectLayer){
 // Timestamp utilities
 
 function fD(str){
-    if(str.length < 2) str = "0" + str
+    if(str.length != 2) str = "0" + str
     return str
 }
 
