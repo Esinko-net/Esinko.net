@@ -40,9 +40,13 @@ async function deploy(files){
                 else {
                     fs.mkdirSync("./live/" + dirs, { recursive: true })
                 }
-                fs.writeFileSync("./live/" + file.name, file.data)
+                let stream = fs.createWriteStream("./live/" + file.name)
+                stream.write(file.data)
+                stream.close()
             }else {
-                fs.writeFileSync("./live/" + file.name, file.data)
+                let stream = fs.createWriteStream("./live/" + file.name)
+                stream.write(file.data)
+                stream.close()
             }
         }
     }
@@ -242,7 +246,7 @@ async function buildSourceObject(source){
             }else {
                 // We have data to read
                 if (header.type == "file") {
-                    let data = decompressed.slice(0, header.size).toString()
+                    let data = decompressed.slice(0, header.size)
                     files.push({ type: "file", name: header.name.replace(rootPrefix, ""), data })
                 }
             }
@@ -303,13 +307,13 @@ async function fetchSource(url, redirectLayer){
 // Timestamp utilities
 
 function fD(str){
-    if(str.length != 2) str = "0" + str
+    if(str.length < 2) str = "0" + str
     return str
 }
 
 function timestamp(){
     let d = new Date()
-    return fD(d.toDateString()) + " " + fD(d.getHours()) + ":" + fD(d.getMinutes()) + ":" + fD(d.getSeconds())
+    return d.toDateString() + " " + fD(d.getHours().toString()) + ":" + fD(d.getMinutes().toString()) + ":" + fD(d.getSeconds().toString())
 }
 
 // Timed action execution
