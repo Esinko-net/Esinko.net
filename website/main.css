@@ -195,3 +195,18 @@ html, body {
         width: 100%;
     }
 }
+
+/** Mobile mode **/
+@media (max-width: 530px){
+    .header .title {
+        font-size: 22vw;
+        margin-left: 6vw; /** TODO: Center this **/
+        letter-spacing: 0.3px;
+
+    }
+
+    .header .titleHighlight {
+        margin-left: -106.5vw;
+        width: 125vw;
+    }
+}
