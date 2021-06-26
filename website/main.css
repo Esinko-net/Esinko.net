@@ -73,14 +73,14 @@ html, body {
 
 .header .titleHighlight {
     display: inline-block;
-    margin-left: -595px;
-    margin-top: 7px;
+    margin-left: -600px;
     z-index: 1;
     width: 600px;
 }
 
 .header .separator {
     z-index: 3;
+    cursor: pointer;
     margin-left: -40px;
     font-size: 70px;
     color: white;
@@ -95,6 +95,10 @@ html, body {
     justify-content: center;
     color: white;
     text-align: center;
+}
+
+.pages > * {
+    cursor: pointer;
 }
 
 .pages div {
@@ -114,11 +118,12 @@ html, body {
     z-index: 2;
     margin-bottom: -80px;
     position: relative;
-    transition: opacity 0.3s ease-in-out;
+    transition: text-shadow 0.3s ease-in-out, color 0.2s ease-in-out;
     opacity: 1;
 }
 
 .pages div img {
+    visibility: hidden;
     z-index: 1;
     width: 100%;
     margin-bottom: -50px;
@@ -129,11 +134,55 @@ html, body {
 }
 
 .pages div h2:hover {
-    opacity: 0;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 95px var(--color-main),
+        0 0 100px var(--color-main),
+        0 0 105px var(--color-main),
+        0 0 150px var(--color-main);
+}
+
+.pages div h2:active {
+    color: var(--color-main)
 }
 
 .pages div:hover > div {
     width: 100%;
+}
+
+/** Collapsed pages **/
+
+.colPages {
+    position: absolute;
+    right: 0px;
+    padding-top: 50px;
+    width: 300px;
+    height: 600px;
+    top: 50px;
+}
+
+.colPages .button {
+    top: 78px;
+    right: 10%;
+    z-index: 5;
+    position: absolute;
+    width: 65px;
+    height: 50px;
+}
+
+.colPages .button div {
+    box-shadow:
+    0 0 7px #fff,
+    0 0 95px var(--color-main),
+    0 0 100px var(--color-main),
+    0 0 105px var(--color-main),
+    0 0 150px var(--color-main);
+    width: 55px;
+    position: relative;
+    background: white;
+    height: 9px;
+    border-radius: 15px;
+    margin-bottom: 9px;
 }
 
 /** Social cards **/
@@ -187,14 +236,14 @@ html, body {
 
 /** Tablet mode **/
 
-@media (max-width: 1750px){
+@media (max-width: 1650px){
     .pages div {
         margin-left: 5px;
         margin-right: 0px;
     }
 }
 
-@media (max-width: 1650px){
+@media (max-width: 1550px){
     .pages {
         position: absolute;
         bottom: 0px;
@@ -215,10 +264,15 @@ html, body {
 /** Mobile mode **/
 @media (max-width: 930px){
     .header .title {
-        font-size: 22vw;
-        margin-left: 16vw; /** TODO: Center this **/
-        letter-spacing: 0.3px;
-        width: 100%;
+        width: calc(100% - 100px);
+        position: absolute;
+        left: 0px;
+    }
+
+    .header .titleHighlight {
+        width: calc(100% - 100px);
+        position: absolute;
+        right: 100px;
     }
 
     .header {
@@ -231,19 +285,4 @@ html, body {
         display: none;
     }
 
-    .header .titleHighlight {
-        margin-left: -106.3vw;
-        width: 125vw;
-    }
-}
-
-@media (max-width: 410px){
-    .header .title {
-        letter-spacing: -0.1px;
-    }
-    .header .titleHighlight {
-        margin-left: -105.5vw;
-        width: 125vw;
-        margin-top: 1vw;
-    }
 }
