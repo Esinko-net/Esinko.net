@@ -153,6 +153,7 @@ html, body {
 /** Collapsed pages **/
 
 .colPages {
+    display: none;
     position: absolute;
     right: 0px;
     padding-top: 50px;
@@ -257,6 +258,10 @@ html, body {
 
 /** Mobile mode **/
 @media (max-width: 930px){
+    .colPages {
+        display: block;
+    }
+
     .header .title {
         width: calc(100% - 100px);
         position: absolute;
