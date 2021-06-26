@@ -162,7 +162,7 @@ html, body {
 }
 
 .colPages .button {
-    top: 78px;
+    top: 76px;
     right: 10%;
     z-index: 5;
     position: absolute;
@@ -171,12 +171,6 @@ html, body {
 }
 
 .colPages .button div {
-    box-shadow:
-    0 0 7px #fff,
-    0 0 95px var(--color-main),
-    0 0 100px var(--color-main),
-    0 0 105px var(--color-main),
-    0 0 150px var(--color-main);
     width: 55px;
     position: relative;
     background: white;
