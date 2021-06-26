@@ -215,13 +215,15 @@ html, body {
 @media (max-width: 930px){
     .header .title {
         font-size: 22vw;
-        margin-left: 6vw; /** TODO: Center this **/
+        margin-left: 16vw; /** TODO: Center this **/
         letter-spacing: 0.3px;
         width: 100%;
     }
 
     .header {
-        padding-left: 5vw;
+        width: 100%;
+        overflow: hidden;
+        max-width: 100%;
     }
 
     .pages {
@@ -231,5 +233,16 @@ html, body {
     .header .titleHighlight {
         margin-left: -106.3vw;
         width: 125vw;
+    }
+}
+
+@media (max-width: 410px){
+    .header .title {
+        letter-spacing: -0.1px;
+    }
+    .header .titleHighlight {
+        margin-left: -105.5vw;
+        width: 125vw;
+        margin-top: 1vw;
     }
 }
