@@ -27,6 +27,7 @@ html, body {
     height: 100%;
     overflow: auto;
     overflow-x: hidden;
+    min-height: 480px;
 }
 
 /** View **/
